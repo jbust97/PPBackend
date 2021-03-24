@@ -1,6 +1,12 @@
 package py.com.progweb.prueba.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+
+import java.util.Date;
+
+import static javax.persistence.TemporalType.DATE;
 
 @Entity
 @Table(name="persona")
@@ -20,6 +26,33 @@ public class Persona {
     @Column(name="apellido",length = 50)
     @Basic(optional = false)
     private String apellido;
+
+    @Column(name="numero_ci",length = 25)
+    @Basic(optional = false)
+    private String numeroCI;
+
+    @Column(name="tipo_ci",length = 25)
+    @Basic(optional = false)
+    private String tipoCI;
+
+    @Column(name="nacionalidad",length = 25)
+    @Basic(optional = false)
+    private String nacionalidad;
+
+    @Column(name="email",length = 25)
+    @Basic(optional = false)
+    private String email;
+
+    @Column(name="telefono",length = 25)
+    @Basic(optional = false)
+    private String telefono;
+
+    @Temporal(DATE)
+    @Column(name="fecha_de_nacimiento",columnDefinition = "DATE")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Basic(optional = false)
+    private Date fechaDeNacimiento;
+
 
     public Persona(){
 
@@ -48,4 +81,54 @@ public class Persona {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+
+    public String getNumeroCI() {
+        return numeroCI;
+    }
+
+    public void setNumeroCI(String numeroCI) {
+        this.numeroCI = numeroCI;
+    }
+
+    public String getTipoCI() {
+        return tipoCI;
+    }
+
+    public void setTipoCI(String tipoCI) {
+        this.tipoCI = tipoCI;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Date getFechaDeNacimiento() {
+        return fechaDeNacimiento;
+    }
+
+    public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+        this.fechaDeNacimiento = fechaDeNacimiento;
+    }
+
+
 }
