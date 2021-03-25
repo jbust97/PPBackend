@@ -129,6 +129,4 @@ public class Persona {
     public void setFechaDeNacimiento(Date fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
-
-
 }
