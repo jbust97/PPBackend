@@ -49,7 +49,7 @@ public class Persona {
 
     @Temporal(DATE)
     @Column(name="fecha_de_nacimiento",columnDefinition = "DATE")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="America/Asuncion")
     @Basic(optional = false)
     private Date fechaDeNacimiento;
 
