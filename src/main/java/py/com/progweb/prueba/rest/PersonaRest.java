@@ -17,12 +17,31 @@ public class PersonaRest {
     @GET
     @Path("/")
     public Response listar(){
-        return Response.ok(personaDAO.lista()).build();
+        return Response.ok(this.personaDAO.lista()).build();
     }
     @POST
     @Path("/")
     public Response crear(Persona p){
         this.personaDAO.agregar(p);
         return Response.ok().build();
+    }
+    @DELETE
+    @Path("/{id}")
+    public Response eliminar(@PathParam("id") int id){
+        this.personaDAO.eliminar(id);
+        return Response.ok().build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    public Response actualizar(@PathParam("id") int id,Persona p){
+        this.personaDAO.actualizar(id,p);
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/{id}")
+    public Response get(@PathParam("id") int id){
+        return Response.ok(this.personaDAO.get(id)).build();
     }
 }
