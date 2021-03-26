@@ -38,3 +38,13 @@ CREATE TABLE public.regla
 );
 CREATE SEQUENCE public.regla_sec;
 
+
+CREATE TABLE public.vencimiento
+(
+    id_vencimiento integer NOT NULL,
+    dias_de_duracion integer NOT NULL,
+    inicio_validez date,
+    fin_validez date,
+    CONSTRAINT vencimiento_pkey PRIMARY KEY (id_vencimiento)
+);
+CREATE SEQUENCE public.vencimiento_sec;
