@@ -27,3 +27,14 @@ CREATE TABLE public.persona
     CONSTRAINT persona_pkey PRIMARY KEY (id_persona)
 );
 CREATE SEQUENCE public.persona_sec;
+
+CREATE TABLE public.regla
+(
+    id_regla integer NOT NULL,
+    monto_de_equivalencia integer NOT NULL,
+    limite_inferior date,
+    limite_superior date,
+    CONSTRAINT regla_pkey PRIMARY KEY (id_regla)
+);
+CREATE SEQUENCE public.regla_sec;
+
