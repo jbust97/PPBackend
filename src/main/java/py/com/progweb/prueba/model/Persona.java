@@ -134,4 +134,12 @@ public class Persona {
     public void setFechaDeNacimiento(Date fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
+
+    public List<BolsaPuntos> getListaBolsas() {
+        return listaBolsas;
+    }
+
+    public void setListaBolsas(List<BolsaPuntos> listaBolsas) {
+        this.listaBolsas = listaBolsas;
+    }
 }

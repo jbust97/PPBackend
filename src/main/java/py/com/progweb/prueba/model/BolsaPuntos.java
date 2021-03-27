@@ -1,6 +1,13 @@
 package py.com.progweb.prueba.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+
+import java.util.Date;
+
+import static javax.persistence.TemporalType.DATE;
 
 @Entity
 @Table(name="bolsa")
@@ -12,9 +19,19 @@ public class BolsaPuntos {
     @SequenceGenerator(name="bolsaSec", sequenceName="bolsa_sec", allocationSize=0)
     private Integer idBolsa;
 
+
+
+    @Temporal(DATE)
     @Column(name="asignacion_de_puntaje")
-    @Basic(optional=false)
-    private Integer asignacionDePuntaje;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="America/Asuncion")
+    @Basic(optional = false)
+    private Date asignacionDePuntaje;
+
+    @Temporal(DATE)
+    @Column(name="caducidad_de_puntaje")
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="America/Asuncion")
+    @Basic(optional = false)
+    private Date caducidadDePuntaje;
 
     @Column(name="puntaje_asignado")
     @Basic(optional = false)
@@ -34,6 +51,7 @@ public class BolsaPuntos {
 
     @JoinColumn(name="id_persona",referencedColumnName = "id_persona")
     @ManyToOne(optional = false)
+    @JsonBackReference
     private Persona persona;
 
     public Integer getIdBolsa() {
@@ -44,13 +62,6 @@ public class BolsaPuntos {
         this.idBolsa = idBolsa;
     }
 
-    public Integer getAsignacionDePuntaje() {
-        return asignacionDePuntaje;
-    }
-
-    public void setAsignacionDePuntaje(Integer asignacionDePuntaje) {
-        this.asignacionDePuntaje = asignacionDePuntaje;
-    }
 
     public Integer getPuntajeAsignado() {
         return puntajeAsignado;
@@ -90,5 +101,21 @@ public class BolsaPuntos {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public Date getAsignacionDePuntaje() {
+        return asignacionDePuntaje;
+    }
+
+    public void setAsignacionDePuntaje(Date asignacionDePuntaje) {
+        this.asignacionDePuntaje = asignacionDePuntaje;
+    }
+
+    public Date getCaducidadDePuntaje() {
+        return caducidadDePuntaje;
+    }
+
+    public void setCaducidadDePuntaje(Date caducidadDePuntaje) {
+        this.caducidadDePuntaje = caducidadDePuntaje;
     }
 }

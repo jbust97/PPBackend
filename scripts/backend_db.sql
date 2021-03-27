@@ -32,8 +32,8 @@ CREATE TABLE public.regla
 (
     id_regla integer NOT NULL,
     monto_de_equivalencia integer NOT NULL,
-    limite_inferior date,
-    limite_superior date,
+    limite_inferior INTEGER,
+    limite_superior INTEGER,
     CONSTRAINT regla_pkey PRIMARY KEY (id_regla)
 );
 CREATE SEQUENCE public.regla_sec;
@@ -54,6 +54,7 @@ CREATE TABLE public.bolsa
     id_bolsa integer NOT NULL,
     id_persona integer NOT NULL,
     asignacion_de_puntaje DATE NOT NULL,
+    caducidad_de_puntaje DATE NOT NULL,
     puntaje_asignado integer NOT NULL,
     puntaje_utilizado integer NOT NULL,
     saldo_de_puntos integer NOT NULL,

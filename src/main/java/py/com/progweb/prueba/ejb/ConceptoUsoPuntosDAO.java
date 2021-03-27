@@ -13,9 +13,9 @@ public class ConceptoUsoPuntosDAO {
     @PersistenceContext(unitName = "pruebaPU")
     private EntityManager em;
 
-    public void agregar(ConceptoUsoPuntos entidad) {
-        this.em.persist(entidad);
-    }
+        public void agregar(ConceptoUsoPuntos entidad) {
+            this.em.persist(entidad);
+        }
 
     public List<ConceptoUsoPuntos> lista (){
         Query q = this.em.createQuery("select c from ConceptoUsoPuntos c");
