@@ -19,15 +19,13 @@ public class ReglaUsoPuntos {
     @Basic(optional = false)
     private Integer montoDeEquivalencia;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name="limite_inferior")
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "America/Asuncion")
-    private Date limiteInferior;
 
-    @Temporal(TemporalType.DATE)
+    @Column(name="limite_inferior")
+    private Integer limiteInferior;
+
+
     @Column(name="limite_superior")
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "America/Asuncion")
-    private Date limiteSuperior;
+    private Integer limiteSuperior;
 
     public Integer getIdRegla() {
         return idRegla;
@@ -45,20 +43,19 @@ public class ReglaUsoPuntos {
         this.montoDeEquivalencia = montoDeEquivalencia;
     }
 
-    public Date getLimiteInferior() {
+    public Integer getLimiteInferior() {
         return limiteInferior;
     }
 
-    public void setLimiteInferior(Date limiteInferior) {
+    public void setLimiteInferior(Integer limiteInferior) {
         this.limiteInferior = limiteInferior;
     }
 
-    public Date getLimiteSuperior() {
+    public Integer getLimiteSuperior() {
         return limiteSuperior;
     }
 
-    public void setLimiteSuperior(Date limiteSuperior) {
+    public void setLimiteSuperior(Integer limiteSuperior) {
         this.limiteSuperior = limiteSuperior;
     }
-
 }

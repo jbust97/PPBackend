@@ -10,6 +10,7 @@
       <class>py.com.progweb.prueba.model.ConceptoUsoPuntos</class>
       <class>py.com.progweb.prueba.model.ReglaUsoPuntos</class>
       <class>py.com.progweb.prueba.model.VencimientoUsoPuntos</class>
+      <class>py.com.progweb.prueba.model.BolsaPuntos</class>
 
       <properties>
          <property name="hibernate.id.new_generator_mappings" value="true"/>
