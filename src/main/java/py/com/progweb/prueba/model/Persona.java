@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import static javax.persistence.TemporalType.DATE;
 
@@ -55,9 +56,14 @@ public class Persona {
     @Basic(optional = false)
     private Date fechaDeNacimiento;
 
-    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
+   /* @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JsonManagedReference
     private List<BolsaPuntos> listaBolsas;
+
+    @OneToMany(mappedBy = "persona", fetch = FetchType.E, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JsonManagedReference
+    private Set<UsoPuntos> listaUsos;
+*/
 
     public Persona(){
 
@@ -135,6 +141,8 @@ public class Persona {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
+  /*
+
     public List<BolsaPuntos> getListaBolsas() {
         return listaBolsas;
     }
@@ -142,4 +150,5 @@ public class Persona {
     public void setListaBolsas(List<BolsaPuntos> listaBolsas) {
         this.listaBolsas = listaBolsas;
     }
+   */
 }
