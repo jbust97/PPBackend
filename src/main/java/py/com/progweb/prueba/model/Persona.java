@@ -1,10 +1,12 @@
 package py.com.progweb.prueba.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 import static javax.persistence.TemporalType.DATE;
 
@@ -53,6 +55,9 @@ public class Persona {
     @Basic(optional = false)
     private Date fechaDeNacimiento;
 
+    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JsonManagedReference
+    private List<BolsaPuntos> listaBolsas;
 
     public Persona(){
 

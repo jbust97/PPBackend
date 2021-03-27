@@ -48,3 +48,17 @@ CREATE TABLE public.vencimiento
     CONSTRAINT vencimiento_pkey PRIMARY KEY (id_vencimiento)
 );
 CREATE SEQUENCE public.vencimiento_sec;
+
+CREATE TABLE public.bolsa
+(
+    id_bolsa integer NOT NULL,
+    id_persona integer NOT NULL,
+    asignacion_de_puntaje DATE NOT NULL,
+    puntaje_asignado integer NOT NULL,
+    puntaje_utilizado integer NOT NULL,
+    saldo_de_puntos integer NOT NULL,
+    monto_de_la_operacion integer NOT NULL,
+    CONSTRAINT bolsa_pkey PRIMARY KEY (id_bolsa),
+    CONSTRAINT  bolsa_persona_fkey FOREIGN KEY (id_persona) REFERENCES public.persona(id_persona)
+);
+CREATE SEQUENCE public.bolsa_sec;
