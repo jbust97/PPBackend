@@ -7,7 +7,9 @@ import py.com.progweb.prueba.model.ReglaUsoPuntos;
 import py.com.progweb.prueba.model.VencimientoUsoPuntos;
 
 
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
+import javax.ejb.Timer;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -95,5 +97,16 @@ public class BolsaPuntosDAO {
         }
         Set<Persona> resultado = new HashSet<>(personas);
         return resultado;
+    }
+
+    @Schedule(hour = "*/12")
+    public void actualizarBolsa(final Timer timer){
+
+        Query q = em.createQuery("select b from BolsaPuntos b WHERE b.caducidadDePuntaje <= current_date ");
+        List<BolsaPuntos> bolsas = (List<BolsaPuntos>) q.getResultList();
+        for(BolsaPuntos bolsa: bolsas){
+            bolsa.setSaldoDePuntos(0);
+            em.persist(bolsa);
+        }
     }
 }
