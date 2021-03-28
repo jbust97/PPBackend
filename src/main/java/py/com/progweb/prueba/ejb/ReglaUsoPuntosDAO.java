@@ -36,4 +36,9 @@ public class ReglaUsoPuntosDAO {
     public ReglaUsoPuntos get(int id){
         return em.find(ReglaUsoPuntos.class,id);
     }
+
+    public Integer equivalenciaMonto(Integer monto) {
+        Query q = em.createQuery("select r from ReglaUsoPuntos r WHERE r.limiteInferior <= :monto AND r.limiteSuperior >= :monto").setParameter("monto",monto);
+        return monto/((ReglaUsoPuntos) q.getSingleResult()).getMontoDeEquivalencia();
+    }
 }

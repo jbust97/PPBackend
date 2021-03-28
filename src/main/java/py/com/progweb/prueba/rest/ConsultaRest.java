@@ -4,6 +4,7 @@ package py.com.progweb.prueba.rest;
 
 import py.com.progweb.prueba.ejb.BolsaPuntosDAO;
 import py.com.progweb.prueba.ejb.PersonaDAO;
+import py.com.progweb.prueba.ejb.ReglaUsoPuntosDAO;
 import py.com.progweb.prueba.ejb.UsoPuntosDAO;
 
 import javax.inject.Inject;
@@ -24,6 +25,8 @@ public class ConsultaRest {
     private UsoPuntosDAO usoPuntosDAO;
     @Inject
     private PersonaDAO personaDAO;
+    @Inject
+    private ReglaUsoPuntosDAO reglaUsoPuntosDAO;
 
     @GET
     @Path("/bolsa")
@@ -52,4 +55,19 @@ public class ConsultaRest {
         return Response.ok(personaDAO.getListaFiltrada(nombre,apellido,fechaNacimiento)).build();
     }
 
+    /*
+    clientes con puntos a vencer en x días
+     */
+
+    @GET
+    @Path("/puntos-a-vencer")
+    public Response consultaPersona(@QueryParam("dias") Integer dias){
+        return Response.ok(bolsaPuntosDAO.getPersonasXDias(dias)).build();
+    }
+
+    @GET
+    @Path("equivalencia-puntos")
+    public Response consultaEquivalenciaMonto(@QueryParam("monto") Integer monto){
+        return Response.ok(reglaUsoPuntosDAO.equivalenciaMonto(monto)).build();
+    }
 }
