@@ -1,7 +1,10 @@
 package py.com.progweb.prueba.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="concepto_uso_puntos")
@@ -21,6 +24,7 @@ public class ConceptoUsoPuntos {
     @Column(name="puntos_requeridos")
     @Basic(optional=false)
     private Integer puntosRequeridos;
+
 
     public ConceptoUsoPuntos(){}
 

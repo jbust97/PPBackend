@@ -63,3 +63,31 @@ CREATE TABLE public.bolsa
     CONSTRAINT  bolsa_persona_fkey FOREIGN KEY (id_persona) REFERENCES public.persona(id_persona)
 );
 CREATE SEQUENCE public.bolsa_sec;
+
+
+CREATE TABLE public.uso
+(
+    id_uso integer NOT NULL,
+    id_persona integer NOT NULL,
+    fecha DATE NOT NULL,
+    puntaje_utilizado integer NOT NULL,
+    id_concepto integer NOT NULL,
+    CONSTRAINT uso_pkey PRIMARY KEY (id_uso),
+    CONSTRAINT  uso_persona_fkey FOREIGN KEY (id_persona) REFERENCES public.persona(id_persona),
+    CONSTRAINT  uso_concepto_fkey FOREIGN KEY (id_concepto) REFERENCES public.concepto_uso_puntos(id_concepto)
+);
+CREATE SEQUENCE public.uso_sec;
+
+CREATE TABLE public.detalle
+(
+
+    id_detalle integer NOT NULL,
+    id_uso integer NOT NULL,
+    puntaje_utilizado integer NOT NULL,
+    id_bolsa integer NOT NULL,
+
+    CONSTRAINT detalle_pkey PRIMARY KEY (id_detalle),
+    CONSTRAINT detalle_uso_fkey FOREIGN KEY(id_uso) references public.uso(id_uso),
+    CONSTRAINT detalle_bolsa_fkey FOREIGN KEY(id_bolsa) references public.bolsa(id_bolsa)
+);
+CREATE SEQUENCE public.detalle_sec;

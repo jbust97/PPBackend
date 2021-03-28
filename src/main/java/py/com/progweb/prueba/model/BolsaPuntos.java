@@ -51,7 +51,7 @@ public class BolsaPuntos {
 
     @JoinColumn(name="id_persona",referencedColumnName = "id_persona")
     @ManyToOne(optional = false)
-    @JsonBackReference
+    //@JsonBackReference
     private Persona persona;
 
     public Integer getIdBolsa() {
