@@ -15,6 +15,8 @@ public class UsoPuntos {
     @Id
     @Column(name="id_uso")
     @Basic(optional = false)
+    @GeneratedValue(generator = "usoSec", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="usoSec",sequenceName = "uso_sec",allocationSize = 0)
     private Integer idUso;
 
     @Temporal(DATE)
@@ -36,7 +38,43 @@ public class UsoPuntos {
     @ManyToOne(optional = false)
     private ConceptoUsoPuntos concepto;
 
+    public Integer getIdUso() {
+        return idUso;
+    }
 
+    public void setIdUso(Integer idUso) {
+        this.idUso = idUso;
+    }
 
+    public Date getFecha() {
+        return fecha;
+    }
 
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Integer getPuntajeUtilizado() {
+        return puntajeUtilizado;
+    }
+
+    public void setPuntajeUtilizado(Integer puntajeUtilizado) {
+        this.puntajeUtilizado = puntajeUtilizado;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public ConceptoUsoPuntos getConcepto() {
+        return concepto;
+    }
+
+    public void setConcepto(ConceptoUsoPuntos concepto) {
+        this.concepto = concepto;
+    }
 }

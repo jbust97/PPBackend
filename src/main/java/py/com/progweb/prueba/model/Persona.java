@@ -13,7 +13,7 @@ import static javax.persistence.TemporalType.DATE;
 
 @Entity
 @Table(name="persona")
-public class Persona {
+public class Persona{
 
     @Id
     @Column(name="id_persona")
