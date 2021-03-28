@@ -8,8 +8,10 @@ import javax.ws.rs.GET;
 
 import py.com.progweb.prueba.model.BolsaPuntos;
 import py.com.progweb.prueba.model.Persona;
+import py.com.progweb.prueba.model.UsoPuntos;
 
 import java.util.List;
+import java.util.Locale;
 
 @Stateless
 public class PersonaDAO {
@@ -41,4 +43,25 @@ public class PersonaDAO {
         return em.find(Persona.class, id);
     }
 
+    public List<Persona> getListaFiltrada(String nombre, String apellido, String fechaDeNacimiento) {
+        String condicion = "";
+
+        if (nombre != null) {
+            nombre = nombre.toLowerCase();
+            condicion += "lower(p.nombre) LIKE '%" + nombre + "%'";
+        }
+        if (apellido != null) {
+            apellido = apellido.toLowerCase();
+            condicion += condicion.length() > 0 ? " AND " : "";
+            condicion += "lower(p.apellido) LIKE '%" + apellido + "%'";
+        }
+        if (fechaDeNacimiento != null) {
+            condicion += condicion.length() > 0 ? " AND " : "";
+            condicion += "p.fechaDeNacimiento = '" + fechaDeNacimiento+ "'";
+        }
+        condicion = condicion.length() > 0 ? "WHERE " + condicion : "";
+        //System.out.println("HERE!!!!! " + condicion);
+        Query q = this.em.createQuery("select p from Persona p " + condicion);
+        return (List<Persona>) q.getResultList();
+    }
 }

@@ -22,6 +22,8 @@ public class ConsultaRest {
     private BolsaPuntosDAO bolsaPuntosDAO;
     @Inject
     private UsoPuntosDAO usoPuntosDAO;
+    @Inject
+    private PersonaDAO personaDAO;
 
     @GET
     @Path("/bolsa")
@@ -39,4 +41,15 @@ public class ConsultaRest {
 
         return Response.ok(usoPuntosDAO.getListaFiltrada(idConcepto,fechaUso,idPersona)).build();
     }
+    /*
+    consulta de clientes por: nombre (aproximación), apellido (aproximación),cumpleaños
+     */
+    @GET
+    @Path("/persona")
+    public Response consultaPersona(@QueryParam("nombre") String nombre,
+                                    @QueryParam("apellido") String apellido,
+                                    @QueryParam("fecha_nacimiento") String fechaNacimiento){
+        return Response.ok(personaDAO.getListaFiltrada(nombre,apellido,fechaNacimiento)).build();
+    }
+
 }
