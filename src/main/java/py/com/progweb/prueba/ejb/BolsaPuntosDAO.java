@@ -14,8 +14,8 @@ import javax.persistence.Query;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Stateless
 public class BolsaPuntosDAO {
@@ -79,5 +79,21 @@ public class BolsaPuntosDAO {
 
             em.persist(bolsa);
         }
+    }
+
+    public Set<Persona> getPersonasXDias(Integer dias) {
+        LocalDate hoy = LocalDate.now();
+        LocalDate fechaCaducidad = hoy.plusDays(dias);
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fechaString = fechaCaducidad.format(formatters);
+
+        Query q = em.createQuery("SELECT b FROM BolsaPuntos b WHERE b.caducidadDePuntaje = '" + fechaString + "'");
+        List<BolsaPuntos> bolsas = (List<BolsaPuntos>) q.getResultList();
+        List<Persona> personas = new ArrayList<>();
+        for(BolsaPuntos bolsa: bolsas){
+            personas.add(bolsa.getPersona());
+        }
+        Set<Persona> resultado = new HashSet<>(personas);
+        return resultado;
     }
 }

@@ -86,4 +86,21 @@ public class UsoPuntosDAO {
 
         }
     }
+
+    public List<UsoPuntos> getListaFiltrada(Integer idConcepto, String fechaUso, Integer idPersona) {
+        String condicion = "";
+        if (idPersona != null)
+            condicion += "u.persona.idPersona = " + idPersona;
+        if (idConcepto != null) {
+            condicion += condicion.length() > 0 ? " AND " : "";
+            condicion += "u.concepto.idConcepto = " + idConcepto;
+        }
+        if (fechaUso != null) {
+            condicion += condicion.length() > 0 ? " AND " : "";
+            condicion += "u.fecha = '" + fechaUso+ "'";
+        }
+        condicion = condicion.length() > 0 ? "WHERE " + condicion : "";
+        Query q = this.em.createQuery("select u from UsoPuntos u " + condicion);
+        return (List<UsoPuntos>) q.getResultList();
+    }
 }
