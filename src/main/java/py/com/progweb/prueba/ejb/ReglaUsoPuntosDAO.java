@@ -13,6 +13,12 @@ public class ReglaUsoPuntosDAO {
     @PersistenceContext(unitName = "pruebaPU")
     private EntityManager em;
     public void agregar(ReglaUsoPuntos entidad){
+        if (entidad.getLimiteInferior() == null){
+            entidad.setLimiteInferior(0);
+        }
+        if(entidad.getLimiteSuperior() == null){
+            entidad.setLimiteSuperior(Integer.MAX_VALUE);
+        }
         this.em.persist(entidad);
     }
 
