@@ -5,6 +5,7 @@ import py.com.progweb.prueba.model.*;
 
 import javax.ejb.ApplicationException;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
@@ -25,7 +26,8 @@ class BusinessException extends Exception{
 public class UsoPuntosDAO {
     @PersistenceContext(unitName = "pruebaPU")
     private EntityManager em;
-
+    @Inject
+    private EnviaCorreos ec;
     public void agregar(UsoPuntos entidad) {
         this.em.persist(entidad);
     }
@@ -80,6 +82,8 @@ public class UsoPuntosDAO {
                 }
                 if (puntosRestantes > 0){
                     throw new BusinessException("No hay suficientes puntos en las bolsas");
+                }else{
+                    this.ec.sendMessage(persona.getEmail(),uso);
                 }
                 //t.commit();
 
